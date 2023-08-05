@@ -1,0 +1,2 @@
+<p>Ikuti kode ini, <abbr title="Masukkan deskripsi disini agar tampil ketika disentuh">Ini teks beneran</abbr>, coba saja hover.</p>
+sumber: https://www.posciety.com/ketika-tulisan-di-hover-muncul-deskripsi-gunakan-tag-ini-pada-bootstrap/

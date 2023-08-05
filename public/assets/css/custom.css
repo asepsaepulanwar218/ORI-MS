@@ -1,0 +1,20 @@
+@media screen and (min-width: 935px) {
+  .halaman-class {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+  }
+}
+
+@font-face {
+  font-family: "kaushan_scriptregular";
+  src: url("../font/kaushanscript-regular-webfont.woff2") format("woff2"),
+    url("../font/kaushanscript-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.nama-app {
+  font-family: "kaushan_scriptregular";
+  text-align: center;
+}
