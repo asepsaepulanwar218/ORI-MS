@@ -13,6 +13,7 @@ class Data_Barang extends Controller
         $data['allBrg'] = $this->model('Data_Barang_model')->countDataBarang();
         $data['nama'] = $this->model('User_model')->getUser();
         $this->view('templates/header', $data);
+        $this->view('templates/menus', $data);
         $this->view('data_barang/index', $data);
         $this->view('templates/footer');
         $this->view('templates/sweetalert');

@@ -1,19 +1,19 @@
 $(function () {
-  var BASEURL = "http://localhost/my-project/NiceAdmin/public/";
+  var BASEURL = "http://localhost/my-project/ORI-MS/public/";
 
   $(".tampilModalUbah").on("click", function () {
     $("#formBarangLabel").html("Ubah Data Barang");
     $(".modal-footer button[type=submit]").html("Ubah Data");
     $(".modal-content form").attr(
       "action",
-      "http://localhost/my-project/NiceAdmin/public/data_barang/ubah"
+      "http://localhost/my-project/ORI-MS/public/data_barang/ubah"
     );
     $("#gambar").removeAttr("required");
 
     var kode_barang = $(this).data("kode_brg");
 
     $.ajax({
-      url: "http://localhost/my-project/NiceAdmin/public/data_barang/getBarang",
+      url: "http://localhost/my-project/ORI-MS/public/data_barang/getBarang",
       data: { kode_brg: kode_barang },
       method: "post",
       dataType: "json",
@@ -28,9 +28,7 @@ $(function () {
         $(".modal-content img").attr("class", " ");
         $(".modal-content img").attr(
           "src",
-          "http://localhost/my-project/NiceAdmin/public/img/".concat(
-            data.gambar
-          )
+          "http://localhost/my-project/ORI-MS/public/img/".concat(data.gambar)
         );
       },
     });
@@ -50,7 +48,7 @@ $(function () {
     var kode_barang = $(this).data("kode_brg");
 
     $.ajax({
-      url: "http://localhost/my-project/NiceAdmin/public/data_barang/getBarang",
+      url: "http://localhost/my-project/ORI-MS/public/data_barang/getBarang",
       data: { kode_brg: kode_barang },
       method: "post",
       dataType: "json",
@@ -65,9 +63,7 @@ $(function () {
         $(".modal-content img").attr("class", " ");
         $(".modal-content img").attr(
           "src",
-          "http://localhost/my-project/NiceAdmin/public/img/".concat(
-            data.gambar
-          )
+          "http://localhost/my-project/ORI-MS/public/img/".concat(data.gambar)
         );
       },
     });
@@ -75,7 +71,6 @@ $(function () {
 
   //klik close
   $(".btn-close").on("click", function () {
-    console.log("close");
     $("#gambar").removeAttr("required");
     $("#gambar").removeAttr("oninvalid");
   });
@@ -98,10 +93,9 @@ $(function () {
   // });
 
   // Halaman Aktif
-  var urlnya = $(location).attr("href");
-  if (urlnya == BASEURL.concat("data_barang")) {
-    $(".data_barang").removeClass("collapsed");
-  }
+  var urlnya = new URL($(location).attr("href"));
+  var menuId = urlnya.pathname.split("/").pop();
+  $("#".concat(menuId)).removeClass("collapsed");
 
   var cariDataBarang = document.getElementById("search");
 
@@ -150,7 +144,7 @@ $(function () {
       },
       {
         orderable: false,
-        targets: 1,
+        targets: [1, 7],
       },
     ],
     select: {
