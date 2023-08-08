@@ -42,9 +42,10 @@
   <script src="<?= BASEURL; ?>/assets/js/dataTables.select.min.js"></script>
 
 
-  <script src="<?= BASEURL; ?>/assets/js/sweetalert2.min.js"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
-  <script src="<?= BASEURL; ?>/assets/js/jquery-3.6.1.min.js"></script>
-  <script type="text/javascript" src="<?= BASEURL; ?>/assets/js/script.js"></script>
+
 
 </head>
+<script src="<?= BASEURL; ?>/assets/js/sweetalert2.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+<script src="<?= BASEURL; ?>/assets/js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="<?= BASEURL; ?>/assets/js/script.js"></script>

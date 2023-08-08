@@ -95,37 +95,42 @@ $(function () {
   // Halaman Aktif
   var urlnya = new URL($(location).attr("href"));
   var menuId = urlnya.pathname.split("/").pop();
-  $("#".concat(menuId)).removeClass("collapsed");
+  if (menuId != "") {
+    var checkId = $("#".concat(menuId));
+    if (checkId.length > 0) {
+      $("#".concat(menuId)).removeClass("collapsed");
+    }
+  }
 
-  var cariDataBarang = document.getElementById("search");
+  // var cariDataBarang = document.getElementById("search");
 
-  cariDataBarang.addEventListener("keyup", function () {
-    // buat object ajax
-    var xhr = new XMLHttpRequest();
+  // cariDataBarang.addEventListener("keyup", function () {
+  //   // buat object ajax
+  //   var xhr = new XMLHttpRequest();
 
-    //cek kesiapan ajax
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState == 4 && xhr.status == 200) {
-        if (cariDataBarang.value == "") {
-          $(document.body).load(BASEURL.concat("data_barang/"));
-        } else {
-          $(".tabel-barang").html(this.response);
-          // $(document.main).load(this.response);
-          $(".pagination").hide();
-        }
-        // $("#search").val(cariDataBarang.value);
-      }
-    };
+  //   //cek kesiapan ajax
+  //   xhr.onreadystatechange = function () {
+  //     if (xhr.readyState == 4 && xhr.status == 200) {
+  //       if (cariDataBarang.value == "") {
+  //         $(document.body).load(BASEURL.concat("data_barang/"));
+  //       } else {
+  //         $(".tabel-barang").html(this.response);
+  //         // $(document.main).load(this.response);
+  //         $(".pagination").hide();
+  //       }
+  //       // $("#search").val(cariDataBarang.value);
+  //     }
+  //   };
 
-    // eksekusi ajax
-    xhr.open(
-      "GET",
-      BASEURL.concat("data_barang/cari/", cariDataBarang.value),
-      true
-    );
-    // xhr.open("GET", BASEURL.concat("assets/js/script.js"), true);
-    xhr.send();
-  });
+  //   // eksekusi ajax
+  //   xhr.open(
+  //     "GET",
+  //     BASEURL.concat("data_barang/cari/", cariDataBarang.value),
+  //     true
+  //   );
+  //   // xhr.open("GET", BASEURL.concat("assets/js/script.js"), true);
+  //   xhr.send();
+  // });
 
   new DataTable("#tabelBarang", {
     // order: [[3, "desc"]],
@@ -165,6 +170,10 @@ $(function () {
   $("#tabelBarang_paginate").on("click", setRowNum);
   $('select[name="tabelBarang_length"]').on("click", setRowNum);
   $("thead").on("click", setRowNum);
+
+  if (menuId == "register") {
+    $("footer").hide();
+  }
 
   // akhir jquery
 });

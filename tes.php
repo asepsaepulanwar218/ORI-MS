@@ -12,3 +12,7 @@ if (password_verify('secret password', $hashed)) {
 } else {
     echo 'Invalid password.';
 }
+
+// $date = new DateTimeImmutable();
+// echo (date('Y-m-d h:i:sa'));
+echo (time());
