@@ -24,4 +24,9 @@ class Register extends Controller
             exit;
         }
     }
+
+    public function getEmailUser()
+    {
+        echo json_encode($this->model('Register_model')->getEmailUser($_POST['dataEmail']));
+    }
 }

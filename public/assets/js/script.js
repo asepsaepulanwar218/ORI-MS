@@ -175,6 +175,23 @@ $(function () {
     $("footer").hide();
   }
 
+  $("button.register").on("click", function () {
+    var dataEmail = $("#yourFirstName").val();
+    console.log(dataEmail);
+
+    $.ajax({
+      url: "http://localhost/my-project/ORI-MS/public/register/getEmailUser",
+      data: { dataEmail: dataEmail },
+      method: "post",
+      dataType: "json",
+      success: function (data) {
+        if (data.jumlah > 0) {
+          alert("email ada");
+        }
+      },
+    });
+  });
+
   // akhir jquery
 });
 

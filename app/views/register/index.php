@@ -28,19 +28,20 @@
                             <form class="row g-2 needs-validation" novalidate action="<?= BASEURL; ?>/register/tambah" method="post">
                                 <div class="col-12">
                                     <label for="yourName" class="form-label">Nama Awal</label>
-                                    <input type="text" name="firstName" class="form-control" id="yourName" required autocomplete="off">
+                                    <input type="text" name="firstName" class="form-control" id="yourFirstName" required autocomplete="off">
                                     <div class="invalid-feedback">Nama awal harus diisi!</div>
                                 </div>
 
                                 <div class="col-12">
                                     <label for="yourName" class="form-label">Nama Akhir</label>
-                                    <input type="text" name="lastName" class="form-control" id="yourName" required autocomplete="off">
+                                    <input type="text" name="lastName" class="form-control" id="yourLastName" required autocomplete="off">
                                     <div class="invalid-feedback">Nama akhir harus diisi!</div>
                                 </div>
 
                                 <div class="col-12">
                                     <label for="yourEmail" class="form-label">Email</label>
                                     <input type="email" name="email" class="form-control" id="yourEmail" required autocomplete="off">
+                                    <div class="fs-6 text-danger checkEmail visually-hidden">email sudah terdaftar!</div>
                                     <div class="invalid-feedback">Email harus diisi!</div>
                                 </div>
 
