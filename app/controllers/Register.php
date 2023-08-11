@@ -29,4 +29,9 @@ class Register extends Controller
     {
         echo json_encode($this->model('Register_model')->getEmailUser($_POST['dataEmail']));
     }
+
+    public function getUserName()
+    {
+        echo json_encode($this->model('Register_model')->getUserName($_POST['dataUserName']));
+    }
 }

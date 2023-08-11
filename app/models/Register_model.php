@@ -30,7 +30,7 @@ class Register_model
         $this->db->bind('last_name', $data['lastName']);
         $this->db->bind('email', $data['email']);
         $this->db->bind('created_by', $data['username']);
-        $this->db->bind('created_date', date('Y-m-d h:i:sa'));
+        $this->db->bind('created_date', date('Y-m-d H:i:s'));
 
         $this->db->execute();
 
@@ -41,6 +41,13 @@ class Register_model
     {
         $this->db->query('SELECT COUNT(id) as jumlah, email FROM ' . $this->table . ' WHERE email = :p_email');
         $this->db->bind('p_email', $email);
+        return $this->db->single();
+    }
+
+    public function getUserName($username)
+    {
+        $this->db->query('SELECT COUNT(id) as jumlah, username FROM ' . $this->table . ' WHERE username = :p_username');
+        $this->db->bind('p_username', $username);
         return $this->db->single();
     }
 }

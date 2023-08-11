@@ -175,9 +175,13 @@ $(function () {
     $("footer").hide();
   }
 
-  $("button.register").on("click", function () {
-    var dataEmail = $("#yourFirstName").val();
-    console.log(dataEmail);
+  //Validasi Registrasi
+  var getElEmail = $(".formRegister input[name='email']");
+  var getElUsername = $(".formRegister input[name='username']");
+  var getElPassword = $(".formRegister input[name='password']");
+  var getElKomPass = $(".formRegister input[name='konfirmPassword']");
+  getElEmail.on("keyup", function () {
+    var dataEmail = getElEmail.val();
 
     $.ajax({
       url: "http://localhost/my-project/ORI-MS/public/register/getEmailUser",
@@ -186,11 +190,72 @@ $(function () {
       dataType: "json",
       success: function (data) {
         if (data.jumlah > 0) {
-          alert("email ada");
+          getElEmail.attr(
+            "oninvalid",
+            "this.setCustomValidity('data tidak boleh kosong')"
+          );
+          getElEmail.attr("oninput", "setCustomValidity('')");
+          getElEmail.addClass("is-invalid");
+          $(".checkEmail").html("email sudah terdaftar!");
+          $("input.register").attr("type", "button");
+        } else {
+          getElEmail.removeAttr("oninvalid");
+          getElEmail.removeAttr("oninput");
+          getElEmail.removeClass("is-invalid");
+          $("input.register").attr("type", "submit");
         }
       },
     });
   });
+
+  getElUsername.on("keyup", function () {
+    var dataUserName = getElUsername.val();
+
+    $.ajax({
+      url: "http://localhost/my-project/ORI-MS/public/register/getUserName",
+      data: { dataUserName: dataUserName },
+      method: "post",
+      dataType: "json",
+      success: function (data) {
+        if (data.jumlah > 0) {
+          getElUsername.attr(
+            "oninvalid",
+            "this.setCustomValidity('data tidak boleh kosong')"
+          );
+          getElUsername.attr("oninput", "setCustomValidity('')");
+          getElUsername.addClass("is-invalid");
+          $(".checkEmail").html("email sudah terdaftar!");
+          $("input.register").attr("type", "button");
+        } else {
+          getElUsername.removeAttr("oninvalid");
+          getElUsername.removeAttr("oninput");
+          getElUsername.removeClass("is-invalid");
+          $("input.register").attr("type", "submit");
+        }
+      },
+    });
+  });
+
+  getElKomPass.on("keyup", function () {
+    var datakonfirmPassword = getElKomPass.val();
+    var dataPassword = getElPassword.val();
+
+    if (datakonfirmPassword != dataPassword) {
+      getElKomPass.attr(
+        "oninvalid",
+        "this.setCustomValidity('data tidak boleh kosong')"
+      );
+      getElKomPass.attr("oninput", "setCustomValidity('')");
+      getElKomPass.addClass("is-invalid");
+      $(".checkEmail").html("email sudah terdaftar!");
+      $("input.register").attr("type", "button");
+    } else {
+      getElKomPass.removeAttr("oninvalid");
+      getElKomPass.removeAttr("oninput");
+      getElKomPass.removeClass("is-invalid");
+      $("input.register").attr("type", "submit");
+    }
+  }); //akhir validasi registrasi
 
   // akhir jquery
 });
@@ -201,3 +266,6 @@ var loadFile = function (event) {
   output.classList = "";
   output.src = URL.createObjectURL(event.target.files[0]);
 };
+
+//tidak bisa kembali ke halaman sebelumnya
+window.history.forward();

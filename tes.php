@@ -3,11 +3,11 @@ $options = [
     'cost' => 10,
 ];
 
-echo password_hash("Admin123$", PASSWORD_DEFAULT, $options);
+echo password_hash("secret password", PASSWORD_DEFAULT, $options);
 
-$hashed = '$2y$10$TdAvZDcU95rvKcHb9qDyx.VRjz871Y.dL.qiBIpuhfWqkfK8bIK9e';
+$hashed = '$2y$10$RjqE27QBmS0TsPgq65gOf.UlAgmp7zwqektkT/I1KOpXO2AzYmnYu';
 
-if (password_verify('secret password', $hashed)) {
+if (password_verify('$2y$10$kKw1o4zHjM3vLA5eVbx8GOhYpwCX43aCL4KSjBEFrOtPEm7N03yHW', $hashed)) {
     echo 'Password is valid!';
 } else {
     echo 'Invalid password.';
