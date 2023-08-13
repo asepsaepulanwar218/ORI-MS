@@ -19,12 +19,16 @@ class Login_model
         $dataPassword = $data['password'];
         // date_default_timezone_set('Asia/Jakarta');
         // $p_password = password_hash($data['password'], PASSWORD_DEFAULT, $this->options);
-        $this->db->query('SELECT username, password FROM ' . $this->table . ' WHERE username = :p_username');
+        $this->db->query('SELECT username, password, activated FROM ' . $this->table . ' WHERE username = :p_username');
         $this->db->bind('p_username', $data['username']);
         $dataUser = $this->db->single();
 
         if (password_verify($dataPassword, $dataUser['password'])) {
-            return true;
+            if ($dataUser['activated'] == 0) {
+                return 0;
+            } else {
+                return true;
+            }
         } else {
             return false;
         }

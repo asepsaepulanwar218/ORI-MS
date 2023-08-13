@@ -3,6 +3,13 @@
 class Dashboard extends Controller
 {
 
+    public function __construct()
+    {
+        if (!isset($_SESSION['user'])) {
+            header('Location: ' . BASEURL . '/login');
+        }
+    }
+
     public function index()
     {
         $data['judul'] = 'Dashboard';

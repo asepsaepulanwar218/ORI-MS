@@ -3,7 +3,7 @@ $options = [
     'cost' => 10,
 ];
 
-echo password_hash("secret password", PASSWORD_DEFAULT, $options);
+echo password_hash("asa", PASSWORD_DEFAULT, $options);
 
 $hashed = '$2y$10$RjqE27QBmS0TsPgq65gOf.UlAgmp7zwqektkT/I1KOpXO2AzYmnYu';
 

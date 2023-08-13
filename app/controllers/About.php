@@ -3,6 +3,13 @@
 class About extends Controller
 {
 
+    public function __construct()
+    {
+        if (!isset($_SESSION['user'])) {
+            header('Location: ' . BASEURL . '/login');
+        }
+    }
+
     public function index($nama = 'Asep Saepul Anwar', $pekerjaan = 'QA', $umur = 25)
     {
         $data['nama'] = $nama;

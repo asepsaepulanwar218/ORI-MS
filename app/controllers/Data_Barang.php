@@ -3,6 +3,13 @@
 class Data_Barang extends Controller
 {
 
+    public function __construct()
+    {
+        if (!isset($_SESSION['user'])) {
+            header('Location: ' . BASEURL . '/login');
+        }
+    }
+
     public function index($paramHal = 1)
     {
         $halaman        = isset($paramHal) ? (int)$paramHal : 1;
@@ -12,6 +19,10 @@ class Data_Barang extends Controller
         $data['judul'] = 'Data Barang';
         $data['allBrg'] = $this->model('Data_Barang_model')->countDataBarang();
         $data['nama'] = $this->model('User_model')->getUser();
+        $data['menu'] = $this->model('Menu_model')->getRoleMenu('asa2');
+        foreach ($data['menu'] as $menus) :
+            $data[$menus['id']] = $this->model('Menu_model')->getMenuLevel2($menus['id']);
+        endforeach;
         $this->view('templates/header', $data);
         $this->view('templates/menus', $data);
         $this->view('data_barang/index', $data);

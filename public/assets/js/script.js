@@ -92,16 +92,6 @@ $(function () {
   //   );
   // });
 
-  // Halaman Aktif
-  var urlnya = new URL($(location).attr("href"));
-  var menuId = urlnya.pathname.split("/").pop();
-  if (menuId != "") {
-    var checkId = $("#".concat(menuId));
-    if (checkId.length > 0) {
-      $("#".concat(menuId)).removeClass("collapsed");
-    }
-  }
-
   // var cariDataBarang = document.getElementById("search");
 
   // cariDataBarang.addEventListener("keyup", function () {
@@ -170,10 +160,6 @@ $(function () {
   $("#tabelBarang_paginate").on("click", setRowNum);
   $('select[name="tabelBarang_length"]').on("click", setRowNum);
   $("thead").on("click", setRowNum);
-
-  if (menuId == "register") {
-    $("footer").hide();
-  }
 
   //Validasi Registrasi
   var getElEmail = $(".formRegister input[name='email']");
@@ -257,6 +243,96 @@ $(function () {
     }
   }); //akhir validasi registrasi
 
+  //validasi login
+  var getElUsernameLogin = $(".formLogin input[name='username']");
+  getElUsernameLogin.on("keyup", function () {
+    var dataUserNameLogin = getElUsernameLogin.val();
+    console.log(dataUserNameLogin);
+
+    $.ajax({
+      url: "http://localhost/my-project/ORI-MS/public/register/getUserName",
+      data: { dataUserName: dataUserNameLogin },
+      method: "post",
+      dataType: "json",
+      success: function (data) {
+        if (data.jumlah < 1) {
+          getElUsernameLogin.attr(
+            "oninvalid",
+            "this.setCustomValidity('data tidak boleh kosong')"
+          );
+          getElUsernameLogin.attr("oninput", "setCustomValidity('')");
+          getElUsernameLogin.addClass("is-invalid");
+          $("input.login").addClass("disabled");
+          // $("input.login").attr("type", "button");
+        } else {
+          getElUsernameLogin.removeAttr("oninvalid");
+          getElUsernameLogin.removeAttr("oninput");
+          getElUsernameLogin.removeClass("is-invalid");
+          var PasswordLogin = $(".formLogin input[name='password']");
+          PasswordLogin.on("keyup", function () {
+            var valPasswordLogin = PasswordLogin.val();
+            if (valPasswordLogin != "") {
+              $("input.login").removeClass("disabled");
+            } else {
+              $("input.login").addClass("disabled");
+            }
+          });
+        }
+      },
+    });
+  });
+
+  var valUsernameLogin = $(".formLogin input[name='username']").val();
+  if (valUsernameLogin == "") {
+    $("input.login").addClass("disabled");
+  } else {
+    $("input.login").attr("type", "submit");
+  }
+  $("input.login").on("click", function () {
+    var valUsernameLogin = $(".formLogin input[name='username']").val();
+    var valPasswordLogin = $(".formLogin input[name='password']").val();
+    console.log("ok");
+    $.ajax({
+      url: "http://localhost/my-project/ORI-MS/public/login/getLogin",
+      data: {
+        username: valUsernameLogin,
+        password: valPasswordLogin,
+      },
+      method: "post",
+      dataType: "json",
+      success: function (data) {
+        if (data == true) {
+          window.location.replace(
+            "http://localhost/my-project/ORI-MS/public/session/".concat(
+              valUsernameLogin
+            )
+          );
+        } else {
+          Swal.fire("Gagal", "password salah!", "error");
+        }
+      },
+    });
+  });
+
+  //memunculkan icon drop down
+  $(".1").append("<i class='bi bi-chevron-down ms-auto'></i>");
+  $(".0").removeAttr("data-bs-toggle");
+
+  // Halaman Aktif
+  var urlAktif = new URL($(location).attr("href"));
+  var menuUrl = urlAktif.pathname.split("/").pop();
+  if (menuUrl != "") {
+    var checkId = $("#".concat(menuUrl));
+    if (checkId.length > 0) {
+      console.log($(".data_barang"));
+      $(".".concat(menuUrl)).removeClass("collapsed");
+    }
+  }
+
+  if (menuUrl == "register" || menuUrl == "login") {
+    $("footer").hide();
+  }
+
   // akhir jquery
 });
 
@@ -267,5 +343,5 @@ var loadFile = function (event) {
   output.src = URL.createObjectURL(event.target.files[0]);
 };
 
-//tidak bisa kembali ke halaman sebelumnya
-window.history.forward();
+// //tidak bisa kembali ke halaman sebelumnya
+// window.history.forward();
