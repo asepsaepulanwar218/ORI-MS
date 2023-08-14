@@ -247,7 +247,6 @@ $(function () {
   var getElUsernameLogin = $(".formLogin input[name='username']");
   getElUsernameLogin.on("keyup", function () {
     var dataUserNameLogin = getElUsernameLogin.val();
-    console.log(dataUserNameLogin);
 
     $.ajax({
       url: "http://localhost/my-project/ORI-MS/public/register/getUserName",
@@ -291,7 +290,6 @@ $(function () {
   $("input.login").on("click", function () {
     var valUsernameLogin = $(".formLogin input[name='username']").val();
     var valPasswordLogin = $(".formLogin input[name='password']").val();
-    console.log("ok");
     $.ajax({
       url: "http://localhost/my-project/ORI-MS/public/login/getLogin",
       data: {
@@ -324,7 +322,6 @@ $(function () {
   if (menuUrl != "") {
     var checkId = $("#".concat(menuUrl));
     if (checkId.length > 0) {
-      console.log($(".data_barang"));
       $(".".concat(menuUrl)).removeClass("collapsed");
     }
   }

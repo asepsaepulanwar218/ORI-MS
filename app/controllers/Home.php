@@ -14,6 +14,10 @@ class Home extends Controller
     {
         $data['judul'] = 'Home';
         $data['nama'] = $this->model('User_model')->getUser();
+        $data['menu'] = $this->model('Menu_model')->getRoleMenu('asa2');
+        foreach ($data['menu'] as $menus) :
+            $data[$menus['id']] = $this->model('Menu_model')->getMenuLevel2($menus['id']);
+        endforeach;
         $this->view('templates/header', $data);
         $this->view('templates/menus', $data);
         $this->view('home/index', $data);

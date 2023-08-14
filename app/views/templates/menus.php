@@ -236,28 +236,21 @@
 
         <ul class="sidebar-nav" id="sidebar-nav">
 
-            <!-- <?php foreach ($data['menu'] as $menus) : ?>
-                <li class="nav-item">
-                    <a class="nav-link collapsed <?= $menus['menu_id']; ?>" id="<?= $menus['menu_id']; ?>" href="<?= BASEURL; ?><?= $menus['url']; ?>">
-                        <i class="bi bi-clipboard-data"></i>
-                        <span><?= $menus['menu_name']; ?></span>
-                    </a>
-                </li>
-            <?php endforeach; ?> -->
-
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link collapsed" id="dashboard" href="<?= BASEURL; ?>/dashboard">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>
-            </li><!-- End Dashboard Nav -->
+            </li> -->
+            <!-- End Dashboard Nav -->
 
-            <li class="nav-item"><!-- End Data Barang Nav -->
+            <!-- <li class="nav-item">
                 <a class="nav-link data_barang collapsed" id="data_barang" href="<?= BASEURL; ?>/data_barang">
                     <i class="bi bi-clipboard-data"></i>
                     <span>Data Barang</span>
                 </a>
-            </li><!-- End Data Barang Nav -->
+            </li> -->
+            <!-- End Data Barang Nav -->
 
             <?php foreach ($data['menu'] as $menus) : ?>
                 <li class="nav-item"><!-- End Data User Nav -->
